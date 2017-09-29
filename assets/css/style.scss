@@ -3,6 +3,9 @@
 
 @import "{{ site.theme }}";
 
+ <!-- Latest compiled and minified CSS -->
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
 a {
   color:#39c;
   text-decoration:none;
