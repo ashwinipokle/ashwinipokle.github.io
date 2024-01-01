@@ -89,5 +89,3 @@ exclude:
   - CNAME
   - command.txt
   - todo.txt
-  - _temp/index.html
-  - _temp/
