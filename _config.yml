@@ -9,7 +9,7 @@ name: Ashwini Pokle
 # description: the profile of an engineer, researcher and software developer
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: images/circle_bw_crop.jpg
+avatar: images/DSC_0167.JPG
 
 #
 # Flags below are optional
@@ -61,6 +61,8 @@ permalink: /
 # The release of Jekyll Now that you're using
 version: v1.2.0
 
+markdown: kramdown
+
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
   # Use GitHub flavored markdown, including triple backtick fenced code blocks
@@ -89,3 +91,6 @@ exclude:
   - CNAME
   - command.txt
   - todo.txt
+
+load_paths:
+  - _sass

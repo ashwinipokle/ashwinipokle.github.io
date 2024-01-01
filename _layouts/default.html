@@ -31,18 +31,18 @@
               </p>
               <p>I received my Bachelor’s in Computer Science from Birla Institute of Technology and Science, Pilani, India. I have also spent a summer at <a href="http://www-bcf.usc.edu/~liu32/melady.html" target="_blank">USC Melady lab</a> where I worked with Prof. Yan Liu. 
               </p>
-              <p>I have also previously interned at FAIR, Meta and Bosch AI. 
+              <p>I have previously interned at FAIR (Meta AI) and Bosch AI. 
               </p>
 
               <p style="text-align:center">
-                <a target="_blank" href="https://mailhide.io/e/YrPvZAax"> Email</a> &nbsp;/&nbsp;
-                <a href="https://github.com/ashwinipokle">GitHub</a> &nbsp;/&nbsp;
-                <a href="https://scholar.google.com/citations?user=o_1YtVoAAAAJ">Google Scholar</a> &nbsp;/&nbsp;
-                <a href="https://www.linkedin.com/in/ashwini-pokle-a7080040/"> LinkedIn </a>
+                <a target="_blank" href="apokle@andrew.cmu.edu"> Email</a> &nbsp;/&nbsp;
+                <a target="_blank" href="https://github.com/ashwinipokle">GitHub</a> &nbsp;/&nbsp;
+                <a target="_blank" href="https://scholar.google.com/citations?user=o_1YtVoAAAAJ">Google Scholar</a> &nbsp;/&nbsp;
+                <a target="_blank" href="https://www.linkedin.com/in/ashwini-pokle-a7080040/"> LinkedIn </a>
               </p>
             </td>
             <td style="padding:2.5%;width:40%;max-width:40%">
-              <img style="width:100%;max-width:100%" alt="profile photo" src="old_webpage/assets/images/DSC_0167.JPG">
+              <img style="width:100%;max-width:100%" alt="profile photo" src="images/DSC_0167.JPG">
             </td>
           </tr>
         </table>
@@ -61,7 +61,7 @@
           {% for post in site.posts %}
           <tr>
             <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
-              <img src="/tn{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+              <img src="{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
             </td>
             <td style="padding:2.5%;width:75%;vertical-align:middle">
               <h3>{{post.title}}</h3>
@@ -72,33 +72,18 @@
               <em>{{post.venue}}</em>, {{ post.date | date: "%Y" }}
               <br>
               {% if post.arxiv %}
-              <a href="{{post.arxiv}}">arxiv</a> /
-              {% endif %}
-              {% if post.video %}
-              <a href="{{post.video}}">video</a> /
+              <a href="{{post.arxiv}}" target="_blank">arxiv</a> | 
               {% endif %}
               {% if post.code %}
-              <a href="{{post.code}}">code</a> /
-              {% endif %}
-              {% if post.poster %}
-              <a href="{{post.poster}}">poster</a> /
-              {% endif %}
-              {% if post.slides %}
-              <a href="{{post.slides}}">slides</a> /
-              {% endif %}
-              {% if post.website %}
-              <a href="{{post.website}}">website</a> /
-              {% endif %}
-              {% if post.youtube %}
-              <a href="{{post.youtube}}">youtube</a> /
+              <a href="{{post.code}}"  target="_blank">code</a>
               {% endif %}
               <p></p>
-              {{ post.excerpt }}
+              {{ post.excerpt | markdownify }}
             </td>
           </tr>
           {% endfor %}
         </table>
-        <br>
+        <!-- <br>
         <br>
         <br>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
@@ -164,7 +149,7 @@
           {% endif %}
           {% endfor %}
           {% endfor %}
-        </table>
+        </table> -->
 
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr>
