@@ -4,11 +4,9 @@ title:  "Deep Equilibrium Based Neural Operators for Steady-State PDEs"
 date:   2023-12-31 22:21:59 +00:00
 image: /images/navier_stokes.png
 categories: research
-author: "Ashwini Pokle"
 authors: "Tanya Marwah*, <strong>Ashwini Pokle*</strong>, J. Zico Kolter, Zachary Chase Lipton, Jianfeng Lu and Andrej Risteski"
-venue: "NeurIPS 2023"
+venue: "Advances in Neural Information Processing Systems (NeurIPS), 2023"
 arxiv: https://arxiv.org/abs/2312.00234
 code: https://github.com/risteskilab/deq-neural-operators
-website: 
 ---
  We demonstrate the benefits of weight-tying as an effective architectural choice for neural operators when applied to steady-state PDEs. We propose FNO-DEQ, a deep equilibrium model based architecture for solving steady-state PDEs that outperforms non-weight tied baselines with 4-6x parameters. 
