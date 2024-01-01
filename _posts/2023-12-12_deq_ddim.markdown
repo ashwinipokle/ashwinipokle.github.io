@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "One-Step Diffusion Distillation via Deep Equilibrium Models"
+date:  2023-12-06 22:21:59 +00:00
+image: /images/navier_stokes.png
+categories: research
+authors: "Zhengyang Geng*, <strong>Ashwini Pokle*</strong>, and J. Zico Kolter"
+venue: "Advances in Neural Information Processing Systems (NeurIPS), 2023 (An earlier version was also presented at Deployable Generative AI workshop, ICML 2023)"
+arxiv: https://openreview.net/pdf?id=f9eVDYrKXI
+code: https://github.com/locuslab/get
+---
+We propose Generative Equilirbium Transformer (GET), a deep equilibrium model-based variant of Vision Transformer that can efficiently distill sampling chain of diffusion models (EDM) into a single-step generative model.
