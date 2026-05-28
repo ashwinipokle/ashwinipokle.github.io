@@ -8,3 +8,5 @@ authors: "Alexandre Galashov, <strong>Ashwini Pokle</strong>, Arnaud Doucet, Art
 venue: "International Conference on Learning Representations (ICLR), 2026"
 arxiv: https://arxiv.org/abs/2510.00815
 ---
+---
+We propose a method to treats classifier-free guidance weights as learned, continuous functions that vary dynamically across conditioning and time. We achieve this by minimizing distributional mismatch of guided sample distribution against the true conditonal distribution. This method improves FID for class-conditional and text-conditional generation. 
