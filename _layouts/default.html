@@ -76,7 +76,7 @@
               <br>
               {% if post.arxiv & post.code %}
               <a href="{{post.arxiv}}" target="_blank">arxiv</a> | 
-              {% endif %}
+              {% elsif %}
               {% if post.arxiv %}
               <a href="{{post.arxiv}}" target="_blank">arxiv</a>
               {% endif %}
