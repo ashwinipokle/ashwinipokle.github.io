@@ -644,7 +644,7 @@ layout: default
     <div class="creative-inner">
       <div class="section-label">Beyond Work</div>
       <p class="section-intro">
-        Outside of research, I find balance in things that are wonderfully slow and tactile —
+        Outside of research, I find balance in things that are wonderfully slow —
         tending a garden and making art by hand.
       </p>
       <div class="creative-grid">
@@ -653,7 +653,7 @@ layout: default
         <div class="creative-card">
           <div class="carousel" id="garden-carousel">
             <div class="carousel-track" id="garden-track">
-              <!-- Add or remove <img> tags here for your photos -->
+              <!-- Add or remove <img> tags here photos -->
               <img src="images/gardening/dahlia.jpg" alt="Dahlias-Spring 2026" class="carousel-slide" />
               <img src="images/gardening/2A821EA0-416E-46B9-9656-3C6FA578C255.JPG" alt="Roses-Summer 2025" class="carousel-slide" />
               <img src="images/gardening/BBB64CF9-172F-44AE-8987-FFC79779D973.JPG" alt="Tomatoes-Summer 2025" class="carousel-slide" />
@@ -674,16 +674,20 @@ layout: default
 
         <!-- ART -->
         <div class="creative-card">
-          <div class="creative-card-img-placeholder art-placeholder">
-            <span class="placeholder-icon">🎨</span>
-            <span class="placeholder-caption">Add your artwork here</span>
+         <div class="carousel" id="art-carousel">
+            <div class="carousel-track" id="art-track">
+              <!-- Add or remove <img> tags here photos -->
+              <img src="images/art/blue_string_art.JPG" alt="String Art" class="carousel-slide" />
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="carouselMove('art', -1)" aria-label="Previous">&#8592;</button>
+            <button class="carousel-btn carousel-next" onclick="carouselMove('art', 1)" aria-label="Next">&#8594;</button>
+            <div class="carousel-dots" id="art-dots"></div>
           </div>
           <div class="creative-card-body">
             <span class="creative-card-tag art-tag">Art</span>
             <div class="creative-card-title">Making things by hand</div>
             <p class="creative-card-desc">
-              I make art as a way to think differently while playing with colors, textures, and forms 
-              without the pressure of an objective function.
+              I make art as a way to think differently while playing with colors without the pressure of an objective function.
             </p>
           </div>
         </div>
