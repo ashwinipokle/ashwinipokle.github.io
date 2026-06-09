@@ -1,3 +1,629 @@
----
+<!-- ---
 layout: default
----
+--- -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashwini Pokle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage: #5a7a5e;
+      --sage-light: #e8f0e9;
+      --sage-dark: #3d5440;
+      --ink: #1a1a1a;
+      --ink-muted: #555;
+      --ink-faint: #888;
+      --surface: #ffffff;
+      --surface-alt: #f7f7f5;
+      --border: #e4e4e0;
+      --accent: #c17a3a;
+      --accent-light: #f5ede0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    a { color: var(--sage-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 56px;
+    }
+    .nav-name {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--ink-muted);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--sage-dark); text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4.5rem 2rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: start;
+    }
+    .hero-text h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+    .hero-role {
+      font-size: 14px;
+      color: var(--sage);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+    .hero-bio {
+      color: var(--ink-muted);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 560px;
+    }
+    .hero-bio a { color: var(--sage-dark); font-weight: 500; }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.6rem;
+    }
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--ink-muted);
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .hero-links a:hover {
+      border-color: var(--sage);
+      color: var(--sage-dark);
+      background: var(--sage-light);
+      text-decoration: none;
+    }
+    .hero-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--sage-light);
+      flex-shrink: 0;
+    }
+    .hero-photo-placeholder {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: var(--sage-light);
+      border: 3px solid var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-photo-placeholder span {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      color: var(--sage-dark);
+      font-weight: 500;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.2rem;
+    }
+    .section-intro {
+      color: var(--ink-muted);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── RESEARCH INTEREST TAG ── */
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 2.5rem;
+    }
+    .tag {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--sage-light);
+      color: var(--sage-dark);
+      font-weight: 500;
+    }
+
+    /* ── PAPERS ── */
+    .papers { display: flex; flex-direction: column; gap: 0; }
+    .paper {
+      display: grid;
+      grid-template-columns: 3px 1fr;
+      gap: 0 1.2rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .paper:last-child { border-bottom: none; }
+    .paper-bar {
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 4px;
+      align-self: stretch;
+    }
+    .paper-bar.featured { background: var(--sage); }
+    .paper-title {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 0.3rem;
+    }
+    .paper-authors {
+      font-size: 13px;
+      color: var(--ink-faint);
+      line-height: 1.5;
+      margin-bottom: 0.3rem;
+    }
+    .paper-authors strong { color: var(--ink-muted); font-weight: 500; }
+    .paper-venue {
+      font-size: 13px;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .paper-links {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .paper-links a {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sage-dark);
+      padding: 2px 8px;
+      border: 1px solid var(--sage-light);
+      border-radius: 4px;
+      background: var(--sage-light);
+    }
+    .paper-links a:hover { background: var(--sage); color: white; border-color: var(--sage); text-decoration: none; }
+    .year-group { margin-top: 2rem; }
+    .year-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── CREATIVE SECTION ── */
+    .creative-section {
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border);
+    }
+    .creative-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    .creative-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .creative-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .creative-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .creative-card-img-placeholder {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .gardening-placeholder { background: linear-gradient(135deg, #dbeedd 0%, #b5d6bb 100%); }
+    .art-placeholder { background: linear-gradient(135deg, #ede4f5 0%, #c9b8e3 100%); }
+    .placeholder-icon { font-size: 3rem; }
+    .placeholder-caption { font-size: 13px; color: #666; font-style: italic; }
+    .creative-card-body { padding: 1.2rem 1.4rem; }
+    .creative-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .creative-card-desc {
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+    .creative-card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    .gardening-tag { background: #e0f0e3; color: #2e6b36; }
+    .art-tag { background: #ede0f5; color: #6b2e8a; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-faint);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 2.5rem 1.2rem 2rem;
+      }
+      .hero-photo-placeholder { display: none; }
+      .hero-text h1 { font-size: 2rem; }
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .section { padding: 2rem 1.2rem; }
+      .creative-grid { grid-template-columns: 1fr; }
+      .creative-inner { padding: 2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">Ashwini Pokle</span>
+    <ul class="nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#papers">Papers</a></li>
+      <li><a href="#beyond">Beyond Work</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-text">
+      <p class="hero-role">Research Scientist · Google</p>
+      <h1>Ashwini Pokle</h1>
+      <p class="hero-bio">
+        I work on generative modeling for images — designing sampling strategies, model architectures,
+        and improving training pipelines to enhance the fidelity and alignment of generated media.
+        I completed my PhD from the <a href="https://www.ml.cmu.edu/">Machine Learning Department</a>
+        at <a href="https://www.cmu.edu/">Carnegie Mellon University</a>, advised by
+        <a href="https://zicokolter.com/">Prof. Zico Kolter</a>. My thesis focused on
+        Deep Equilibrium Models and Diffusion Models in practice.
+        I hold an MS in Computer Science from <a href="http://cs.stanford.edu">Stanford University</a>,
+        and a BS in Computer Science from BITS Pilani, India.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:apokle@google.com">✉ Email</a>
+        <a href="https://github.com/ashwinipokle" target="_blank">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=o_1YtVoAAAAJ" target="_blank">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/ashwini-pokle-a7080040/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-photo-placeholder" aria-hidden="true">
+      <span>AP</span>
+    </div>
+  </header>
+
+  <!-- RESEARCH -->
+  <section class="section" id="research">
+    <div class="section-label">Research</div>
+    <p class="section-intro">
+      My research advances generative modeling for images. I'm interested in designing novel sampling
+      strategies, model architectures, improving training pipelines, and developing methods that
+      enhance the overall fidelity and alignment of generated media.
+    </p>
+    <div class="research-tags">
+      <span class="tag">Diffusion Models</span>
+      <span class="tag">Consistency Models</span>
+      <span class="tag">Deep Equilibrium Models</span>
+      <span class="tag">Flow Matching</span>
+      <span class="tag">Inverse Problems</span>
+      <span class="tag">Neural Operators</span>
+    </div>
+  </section>
+
+  <!-- PAPERS -->
+  <section class="section" id="papers" style="padding-top: 0;">
+    <div class="section-label">Publications</div>
+
+    <div class="year-group">
+      <div class="year-label">2026</div>
+      <div class="papers">
+        <div class="paper">
+          <div class="paper-bar featured"></div>
+          <div>
+            <div class="paper-title">Learn to guide your diffusion model</div>
+            <div class="paper-authors">Alexandre Galashov, <strong>Ashwini Pokle</strong>, Arnaud Doucet, Arthur Gretton, Mauricio Delbracio, Valentin De Bortoli</div>
+            <div class="paper-venue">International Conference on Learning Representations (ICLR), 2026</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2510.00815" target="_blank">arXiv</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2025</div>
+      <div class="papers">
+        <div class="paper">
+          <div class="paper-bar featured"></div>
+          <div>
+            <div class="paper-title">Consistency Models Made Easy</div>
+            <div class="paper-authors">Zhengyang Geng, <strong>Ashwini Pokle</strong>, William Luo, Justin Lin, Zico Kolter</div>
+            <div class="paper-venue">International Conference on Learning Representations (ICLR), 2025</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2406.14548" target="_blank">arXiv</a>
+              <a href="https://github.com/locuslab/ect" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2024</div>
+      <div class="papers">
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Training-free Linear Image Inverses via Flows</div>
+            <div class="paper-authors"><strong>Ashwini Pokle</strong>, Matthew J. Muckley, Ricky T. Q. Chen, Brian Karrer</div>
+            <div class="paper-venue">Transactions on Machine Learning Research (TMLR), 2024</div>
+            <div class="paper-links">
+              <a href="https://openreview.net/pdf?id=PLIt3a4yTm" target="_blank">Paper</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2023</div>
+      <div class="papers">
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Deep Equilibrium Based Neural Operators for Steady-State PDEs</div>
+            <div class="paper-authors">Tanya Marwah*, <strong>Ashwini Pokle*</strong>, J. Zico Kolter, Zachary Chase Lipton, Jianfeng Lu, Andrej Risteski</div>
+            <div class="paper-venue">Advances in Neural Information Processing Systems (NeurIPS), 2023</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2312.00234" target="_blank">arXiv</a>
+              <a href="https://github.com/risteskilab/deq-neural-operators" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">One-Step Diffusion Distillation via Deep Equilibrium Models</div>
+            <div class="paper-authors">Zhengyang Geng*, <strong>Ashwini Pokle*</strong>, J. Zico Kolter</div>
+            <div class="paper-venue">Advances in Neural Information Processing Systems (NeurIPS), 2023</div>
+            <div class="paper-links">
+              <a href="https://openreview.net/pdf?id=f9eVDYrKXI" target="_blank">Paper</a>
+              <a href="https://github.com/locuslab/get" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2022</div>
+      <div class="papers">
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Deep Equilibrium Approaches to Diffusion Models</div>
+            <div class="paper-authors"><strong>Ashwini Pokle</strong>, Zhengyang Geng, J. Zico Kolter</div>
+            <div class="paper-venue">Advances in Neural Information Processing Systems (NeurIPS), 2022</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2210.12867" target="_blank">arXiv</a>
+              <a href="https://github.com/locuslab/deq-ddim" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Path independent equilibrium models can better exploit test-time computation</div>
+            <div class="paper-authors">Cem Anil*, <strong>Ashwini Pokle*</strong>, Kaiqu Liang*, Johannes Treutlein, Yuhuai Wu, Shaojie Bai, J. Zico Kolter, Roger Baker Grosse</div>
+            <div class="paper-venue">Advances in Neural Information Processing Systems (NeurIPS), 2022</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2211.09961" target="_blank">arXiv</a>
+            </div>
+          </div>
+        </div>
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Contrasting the Landscape of Contrastive and Non-Contrastive Learning</div>
+            <div class="paper-authors"><strong>Ashwini Pokle*</strong>, Jinjin Tian*, Yuchen Li*, Andrej Risteski</div>
+            <div class="paper-venue">Conference on Artificial Intelligence and Statistics (AISTATS), 2022</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2203.15702" target="_blank">arXiv</a>
+              <a href="https://github.com/ashwinipokle/contrastive_landscape" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2019 – 2021</div>
+      <div class="papers">
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Visually-Grounded Library of Behaviors for Generalizing Manipulation Across Objects, Configurations and Views</div>
+            <div class="paper-authors">Hsiao-Yu Tung*, Jingyun Yang*, Yunchu Zhang*, Gaurav Pathak, <strong>Ashwini Pokle</strong>, Christopher G. Atkeson, Katerina Fragkiadaki</div>
+            <div class="paper-venue">Conference on Robot Learning (CoRL), 2021</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/1905.05279" target="_blank">arXiv</a>
+              <a href="https://github.com/YunchuZhang/Visually-Grounded-Library-of-Behaviors" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Deep Local Trajectory Planning and Control for Robot Navigation</div>
+            <div class="paper-authors"><strong>Ashwini Pokle</strong>, Roberto Martín-Martín, Patrick Goebel, et al.</div>
+            <div class="paper-venue">IEEE International Conference on Robotics and Automation (ICRA), 2019</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/1905.05279" target="_blank">arXiv</a>
+            </div>
+          </div>
+        </div>
+        <div class="paper">
+          <div class="paper-bar"></div>
+          <div>
+            <div class="paper-title">Translating Navigation Instructions in Natural Language to a High-Level Plan for Behavioral Robot Navigation</div>
+            <div class="paper-authors">Xiaoxue Zang*, <strong>Ashwini Pokle*</strong>, Marynel Vázquez, Kevin Chen, Juan Carlos Niebles, Alvaro Soto, Silvio Savarese</div>
+            <div class="paper-venue">Conference on Empirical Methods in Natural Language Processing (EMNLP), 2018</div>
+            <div class="paper-links">
+              <a href="http://aclweb.org/anthology/D18-1286" target="_blank">Paper</a>
+              <a href="https://github.com/StanfordVL/behavioral_navigation_nlp/" target="_blank">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEYOND WORK -->
+  <div class="creative-section" id="beyond">
+    <div class="creative-inner">
+      <div class="section-label">Beyond Work</div>
+      <p class="section-intro">
+        Outside of research, I find balance in things that are wonderfully slow and tactile —
+        tending a garden and making art by hand.
+      </p>
+      <div class="creative-grid">
+
+        <!-- GARDENING -->
+        <div class="creative-card">
+          <div class="creative-card-img-placeholder gardening-placeholder">
+            <span class="placeholder-icon">🌿</span>
+            <span class="placeholder-caption">Add your garden photos here</span>
+          </div>
+          <div class="creative-card-body">
+            <span class="creative-card-tag gardening-tag">Gardening</span>
+            <div class="creative-card-title">Growing things slowly</div>
+            <p class="creative-card-desc">
+              I grow herbs, vegetables, and flowers — learning that not everything can be optimized.
+              Gardening keeps me patient and connected to seasons.
+            </p>
+          </div>
+        </div>
+
+        <!-- ART -->
+        <div class="creative-card">
+          <div class="creative-card-img-placeholder art-placeholder">
+            <span class="placeholder-icon">🎨</span>
+            <span class="placeholder-caption">Add your artwork here</span>
+          </div>
+          <div class="creative-card-body">
+            <span class="creative-card-tag art-tag">Art</span>
+            <div class="creative-card-title">Making things by hand</div>
+            <p class="creative-card-desc">
+              I make art as a way to think differently — playing with color, texture, and form
+              without the pressure of an objective function.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Ashwini Pokle · San Francisco Bay Area</p>
+  </footer>
+
+</body>
+</html>
