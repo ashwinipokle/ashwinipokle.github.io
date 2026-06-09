@@ -331,6 +331,66 @@ layout: default
     .gardening-tag { background: #e0f0e3; color: #2e6b36; }
     .art-tag { background: #ede0f5; color: #6b2e8a; }
 
+     /* ── CAROUSEL ── */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: var(--surface-alt);
+    }
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .carousel-slide {
+      min-width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.85);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      transition: background 0.15s;
+      z-index: 2;
+    }
+    .carousel-btn:hover { background: white; }
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 2;
+    }
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .carousel-dot.active { background: white; }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -591,9 +651,16 @@ layout: default
 
         <!-- GARDENING -->
         <div class="creative-card">
-          <div class="creative-card-img-placeholder gardening-placeholder">
-            <span class="placeholder-icon">🌿</span>
-            <span class="placeholder-caption">Add your garden photos here</span>
+          <div class="carousel" id="garden-carousel">
+            <div class="carousel-track" id="garden-track">
+              <!-- Add or remove <img> tags here for your photos -->
+              <img src="images/gardening/dahlia.jpg" alt="Dahlias-Spring 2026" class="carousel-slide" />
+              <img src="images/gardening/2A821EA0-416E-46B9-9656-3C6FA578C255.JPG" alt="Roses-Summer 2025" class="carousel-slide" />
+              <img src="images/gardening/images/gardening/BBB64CF9-172F-44AE-8987-FFC79779D973.JPG" alt="Tomatoes-Summer 2025" class="carousel-slide" />
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="carouselMove('garden', -1)" aria-label="Previous">&#8592;</button>
+            <button class="carousel-btn carousel-next" onclick="carouselMove('garden', 1)" aria-label="Next">&#8594;</button>
+            <div class="carousel-dots" id="garden-dots"></div>
           </div>
           <div class="creative-card-body">
             <span class="creative-card-tag gardening-tag">Gardening</span>
@@ -630,5 +697,43 @@ layout: default
     <p>Ashwini Pokle · San Francisco Bay Area</p>
   </footer>
 
+    <script>
+    const carousels = {};
+
+    function initCarousel(id) {
+      const track = document.getElementById(id + '-track');
+      const slides = track ? track.querySelectorAll('.carousel-slide') : [];
+      const dotsEl = document.getElementById(id + '-dots');
+      if (!slides.length) return;
+
+      const state = { index: 0, total: slides.length, timer: null };
+      carousels[id] = state;
+
+      slides.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.onclick = () => goTo(id, i);
+        dotsEl.appendChild(d);
+      });
+
+      goTo(id, 0);
+    }
+
+    function goTo(id, i) {
+      const s = carousels[id];
+      s.index = (i + s.total) % s.total;
+      document.getElementById(id + '-track').style.transform = 'translateX(-' + (s.index * 100) + '%)';
+      document.getElementById(id + '-dots').querySelectorAll('.carousel-dot')
+        .forEach(function(d, j) { d.classList.toggle('active', j === s.index); });
+      clearInterval(s.timer);
+      s.timer = setInterval(function() { goTo(id, (s.index + 1) % s.total); }, 4000);
+    }
+
+    function carouselMove(id, dir) { goTo(id, carousels[id].index + dir); }
+
+    document.addEventListener('DOMContentLoaded', function() { initCarousel('garden'); });
+  </script>
+
+</body>
 </body>
 </html>
