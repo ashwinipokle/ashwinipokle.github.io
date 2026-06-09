@@ -737,7 +737,10 @@ layout: default
 
     function carouselMove(id, dir) { goTo(id, carousels[id].index + dir); }
 
-    document.addEventListener('DOMContentLoaded', function() { initCarousel('garden'); });
+    document.addEventListener('DOMContentLoaded', function() {
+      initCarousel('garden');
+      initCarousel('art');
+    });
   </script>
 
 </body>
